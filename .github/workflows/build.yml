@@ -1,0 +1,48 @@
+name: Hotel Cleaning App CI
+
+# Executa o workflow em pushes para a branch main ou em pull requests
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-run:
+    runs-on: ubuntu-latest # Usa a última versão do Ubuntu
+
+    steps:
+      # Faz checkout do código
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Configura o JDK 17 (compatível com seu projeto)
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin' # Usa Eclipse Temurin, que é estável
+          cache: maven # Cache das dependências Maven para acelerar builds
+
+      # Compila e instala dependências com Maven
+      - name: Build with Maven
+        run: mvn clean install -B
+
+      # Inicia a aplicação Spring Boot em background
+      - name: Run Spring Boot App
+        run: |
+          nohup mvn spring-boot:run &
+          # Aguarda até que a aplicação esteja disponível (máx. 30 segundos)
+          for attempt in {1..30}; do
+            sleep 1
+            if curl --retry 3 --retry-delay 1 http://localhost:8080/index.html; then
+              echo "Aplicação iniciou com sucesso!"
+              break
+            fi
+            echo "Aguardando inicialização..."
+          done
+
+      # (Opcional) Testa um endpoint específico, se aplicável
+      - name: Test Application
+        run: |
+          curl -f http://localhost:8080/index.html || exit 1
