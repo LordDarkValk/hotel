@@ -1,0 +1,5 @@
+com/example/hotel/model/CleaningRecord.class
+com/example/hotel/service/CleaningService.class
+com/example/hotel/HotelApplication.class
+com/example/hotel/controller/CleaningController.class
+com/example/hotel/repository/CleaningRepository.class

@@ -1,0 +1,132 @@
+/* Global styles: Clean, professional font and layout */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f7fa;
+    color: #333;
+}
+
+header {
+    background-color: #007bff; /* Blue for professional look */
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+nav {
+    text-align: center;
+    margin: 10px 0;
+}
+
+nav button {
+    padding: 10px 20px;
+    margin: 5px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+nav button:hover {
+    background-color: #0056b3;
+}
+
+main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background: white;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    border-radius: 8px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-top: 10px;
+}
+
+input, button {
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button[type="submit"] {
+    background-color: #28a745;
+    color: white;
+    margin-top: 20px;
+}
+
+button[type="submit"]:hover {
+    background-color: #218838;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+/* Responsive: Adjust for mobile */
+@media (max-width: 600px) {
+    main {
+        padding: 10px;
+    }
+}
+
+/* Estilos para impressão: Esconde tudo exceto o #printArea */
+@media print {
+    body * {
+        visibility: hidden;
+    }
+    #printArea, #printArea * {
+        visibility: visible;
+    }
+    #printArea {
+        position: absolute;
+        left: 0;
+        top: 0;
+        display: block;
+        width: 100%;
+        font-size: 12pt; /* Tamanho de fonte clean para impressão */
+    }
+    /* Estilos específicos para a tabela impressa: Clean e profissional */
+    #printArea table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+    }
+    #printArea th, #printArea td {
+        border: 1px solid #000;
+        padding: 8px;
+        text-align: left;
+    }
+    #printArea th {
+        background-color: #f2f2f2;
+    }
+    #printArea h2, #printArea h3 {
+        text-align: center;
+        margin: 10px 0;
+    }
+    #printArea ul {
+        list-style: none;
+        padding: 0;
+    }
+}
